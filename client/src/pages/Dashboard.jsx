@@ -26,15 +26,17 @@ export default function Dashboard() {
     const book = async (doctorId) => {
         try {
             await API.post("/appointments/book", {
-                doctorId: doctorId,
+                doctorId,
                 date: new Date().toISOString().split("T")[0],
                 time: "10:00 AM"
             });
 
             alert("Booked!");
         } catch (err) {
-            console.log(err.response?.data); // 🔥 THIS IS KEY
-            alert("Error booking appointment");
+            console.log("FULL ERROR:", err);
+            console.log("BACKEND MSG:", err.response?.data);
+
+            alert(err.response?.data?.msg || "Error booking appointment");
         }
     };
 
