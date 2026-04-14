@@ -26,12 +26,14 @@ export default function Dashboard() {
     const book = async (doctorId) => {
         try {
             await API.post("/appointments/book", {
-                doctorId,
-                date: "2026-04-10",
+                doctorId: doctorId,
+                date: new Date().toISOString().split("T")[0],
                 time: "10:00 AM"
             });
-            alert("Appointment booked successfully!");
+
+            alert("Booked!");
         } catch (err) {
+            console.log(err.response?.data); // 🔥 THIS IS KEY
             alert("Error booking appointment");
         }
     };
@@ -98,7 +100,7 @@ export default function Dashboard() {
 
                                             <button
                                                 className="btn-primary w-full"
-                                                onClick={() => book(doc.userId._id)}
+                                                onClick={() => book(doc.userId)}
                                             >
                                                 Book Appointment
                                             </button>

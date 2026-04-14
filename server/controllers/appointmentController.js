@@ -10,7 +10,10 @@ exports.bookAppointment = async (req, res) => {
 
 
     const { doctorId, date, time } = req.body;
-
+    
+    if (!doctorId || !date || !time) {
+      return res.status(400).json({ msg: "All fields required" });
+    }
     // prevent double booking (same doctor, same slot)
     const existing = await Appointment.findOne({
       doctorId,
@@ -44,7 +47,7 @@ exports.getMyAppointments = async (req, res) => {
       return res.status(403).json({ msg: "Only patients can view their appointments" });
     }
 
-    
+
     const appointments = await Appointment.find({
       patientId: req.user.id
     }).populate("doctorId", "name email");
