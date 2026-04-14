@@ -8,7 +8,7 @@ app.use(express.json());
 
 // Middleware
 app.use(cors({
-  origin: ["http://localhost:5173", "https://your-frontend.vercel.app"],
+  origin: ["https://healthcare-system-taupe.vercel.app/"],
   credentials: true
 }));
 app.use(express.json());
