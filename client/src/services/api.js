@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://healthcare-system-l3fy.onrender.com/api"
+  baseURL: "https://healthcare-system-l3fy.onrender.com/"
 });
 
 // attach token automatically
